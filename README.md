@@ -69,9 +69,9 @@ Returns a simple ping message:
 ### Testing
 
 The backend uses unittest for testing, including tests for:  
-	- Image preprocessing  
-	- Model prediction (mocked)  
-	- API endpoints  
+- Image preprocessing  
+- Model prediction (mocked)  
+- API endpoints  
 
 Run tests:
 ```
