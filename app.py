@@ -2,6 +2,7 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from backend.model import ShapeClassifier
 from backend.image_utils import preprocess_image
+from fastapi.responses import JSONResponse
 
 # -----------------------------
 # FastAPI Configuration
@@ -31,7 +32,12 @@ classifier = ShapeClassifier(model_file="shapes_model.onnx")
 # Endpoints
 # -----------------------------
 @app.post("/predict")
-async def predict(file: UploadFile = File(...)):
+async def predict(file: UploadFile = File(None)):
+    if file is None:
+        # Ping keep-alive
+        return JSONResponse({"message": "Ping received, no image"})
+    
+    # Process image
     img_array = preprocess_image(file.file)
     pred_shape, confidence = classifier.predict(img_array)
     return {"predicted_shape": pred_shape, "confidence": confidence}
