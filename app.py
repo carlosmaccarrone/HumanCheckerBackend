@@ -31,7 +31,7 @@ classifier = ShapeClassifier(model_file="shapes_model.onnx")
 # -----------------------------
 # Endpoints
 # -----------------------------
-@app.post("/predict")
+@app.api_route("/predict", methods=["GET", "POST"])
 async def predict(file: UploadFile = File(None)):
     if file is None:
         # Ping keep-alive
