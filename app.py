@@ -31,13 +31,14 @@ classifier = ShapeClassifier(model_file="shapes_model.onnx")
 # -----------------------------
 # Endpoints
 # -----------------------------
-@app.api_route("/predict", methods=["GET", "POST"])
-async def predict(file: UploadFile = File(None)):
-    if file is None:
-        # Ping keep-alive
+@app.api_route("/predict", methods=["GET", "POST", "HEAD"])
+async def predict(file: UploadFile = File(None), request: Request = None):
+    if request.method == "HEAD":
         return JSONResponse({"message": "Ping received, no image"})
     
-    # Process image
+    if file is None:
+        return JSONResponse({"message": "Ping received, no image"})
+    
     img_array = preprocess_image(file.file)
     pred_shape, confidence = classifier.predict(img_array)
     return {"predicted_shape": pred_shape, "confidence": confidence}
