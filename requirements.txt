@@ -3,3 +3,4 @@ uvicorn[standard]
 onnxruntime
 numpy
 pillow
+python-multipart
