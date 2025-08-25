@@ -1,3 +1,5 @@
+[![Python CI](https://github.com/carlosmaccarrone/HumanCheckerBackend/actions/workflows/ci.yml/badge.svg)](https://github.com/carlosmaccarrone/HumanCheckerBackend/actions/workflows/ci.yml)
+
 # Human Checker Backend
 
 This is the backend for the **Human Checker App**, a React-based application that classifies **squares, circles, and triangles** based on the user's canvas input. The backend is built with **FastAPI** and leverages **ONNX Runtime** for extremely fast model inference.
