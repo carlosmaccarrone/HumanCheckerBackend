@@ -4,3 +4,4 @@ onnxruntime
 numpy
 pillow
 python-multipart
+httpx
